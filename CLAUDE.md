@@ -20,13 +20,18 @@ No test framework is configured.
 
 ## Architecture
 
-This is a **single-component React app** (React 19, Vite 7). All state and logic lives in `src/App.jsx` — there are no child components, no routing, and no external state management.
+React 19, Vite 7. The app is split into four components with no routing and no external state management.
+
+**Components:**
+- `src/App.jsx` — root component; owns `transactions` state and passes data/callbacks down
+- `src/Summary.jsx` — computes and displays total income, expenses, and balance from `transactions`
+- `src/TransactionForm.jsx` — owns its own form state (`description`, `amount`, `type`, `category`); calls `onAdd` prop with a new transaction object on submit
+- `src/TransactionList.jsx` — owns filter state (`filterType`, `filterCategory`); renders the filtered transactions table
 
 **State managed in `App`:**
-- `transactions` — array of `{ id, description, amount, type, category, date }`
-- Form fields: `description`, `amount`, `type`, `category`
-- Filter fields: `filterType`, `filterCategory`
+- `transactions` — array of `{ id, description, amount, type, category, date }`; `amount` is a number
 
-**Known intentional bug:** `amount` values are stored as strings. The `reduce` calls for `totalIncome` and `totalExpenses` concatenate strings instead of summing numbers, so computed totals are wrong. The fix is to parse amounts to numbers when storing or when reducing.
+**Constants:**
+- `categories` — static array defined at module scope in `App.jsx`, passed as a prop to `TransactionForm` and `TransactionList`
 
-**Data flow:** all mutations go through `setTransactions`. There is no persistence layer — data resets on page reload.
+**Data flow:** new transactions are created in `TransactionForm` and surfaced via the `onAdd` callback to `App`, which appends them to `transactions` via `setTransactions`. There is no persistence layer — data resets on page reload.
