@@ -4,8 +4,31 @@
   box-sizing: border-box;
 }
 
+:root {
+  --font-display: "Instrument Serif", Georgia, serif;
+  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", "SF Mono", Menlo, monospace;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  background-color: #ffffff;
-  color: #333;
+  font-family: var(--font-body);
+  background-color: #edefdf;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(32, 43, 33, 0.05),
+    rgba(32, 43, 33, 0.05) 1px,
+    transparent 1px,
+    transparent 30px
+  );
+  color: #202b21;
+  min-height: 100vh;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

@@ -93,8 +93,13 @@ function App() {
 
   return (
     <div className="app">
-      <h1>Finance Tracker</h1>
-      <p className="subtitle">Track your income and expenses</p>
+      <header className="masthead">
+        <p className="eyebrow">Personal account register</p>
+        <h1 className="wordmark">Ledger</h1>
+        <p className="subtitle">
+          A running record of what comes in and what goes out.
+        </p>
+      </header>
 
       <Summary transactions={transactions} />
       <CategoryChart transactions={transactions} />

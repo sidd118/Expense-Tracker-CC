@@ -9,20 +9,7 @@ import {
   LabelList,
   ResponsiveContainer,
 } from "recharts";
-
-// Fixed hue per category, assigned by the category's position in the master
-// `categories` list (not by rank in the chart) so a color always means the
-// same category everywhere it appears.
-const CATEGORY_COLORS = {
-  food: "var(--series-1)",
-  housing: "var(--series-2)",
-  utilities: "var(--series-3)",
-  transport: "var(--series-4)",
-  entertainment: "var(--series-5)",
-  salary: "var(--series-6)",
-  other: "var(--series-7)",
-};
-const FALLBACK_COLOR = "var(--series-7)";
+import { CATEGORY_COLORS, FALLBACK_COLOR } from "./categoryColors";
 
 const currency = (value) =>
   `$${Math.round(value).toLocaleString()}`;
